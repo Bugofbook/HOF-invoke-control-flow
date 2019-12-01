@@ -1,45 +1,71 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'run', 'test' ]
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'login',
+1 verbose cli   '--registry=https://npm.pkg.github.com/' ]
 2 info using npm@3.5.2
 3 info using node@v8.10.0
-4 verbose run-script [ 'pretest', 'test', 'posttest' ]
-5 info lifecycle hof-invoke-control-flow@1.0.0~pretest: hof-invoke-control-flow@1.0.0
-6 silly lifecycle hof-invoke-control-flow@1.0.0~pretest: no script for pretest, continuing
-7 info lifecycle hof-invoke-control-flow@1.0.0~test: hof-invoke-control-flow@1.0.0
-8 verbose lifecycle hof-invoke-control-flow@1.0.0~test: unsafe-perm in lifecycle true
-9 verbose lifecycle hof-invoke-control-flow@1.0.0~test: PATH: /usr/share/npm/bin/node-gyp-bin:/home/bugofbook/github/HOF-invoke-control-flow/node_modules/.bin:/home/bugofbook/.local/bin:/home/bugofbook/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/bugofbook/.dotnet/tools
-10 verbose lifecycle hof-invoke-control-flow@1.0.0~test: CWD: /home/bugofbook/github/HOF-invoke-control-flow
-11 silly lifecycle hof-invoke-control-flow@1.0.0~test: Args: [ '-c', 'test' ]
-12 silly lifecycle hof-invoke-control-flow@1.0.0~test: Returned: code: 1  signal: null
-13 info lifecycle hof-invoke-control-flow@1.0.0~test: Failed to exec test script
-14 verbose stack Error: hof-invoke-control-flow@1.0.0 test: `test`
-14 verbose stack Exit status 1
-14 verbose stack     at EventEmitter.<anonymous> (/usr/share/npm/lib/utils/lifecycle.js:232:16)
-14 verbose stack     at emitTwo (events.js:126:13)
-14 verbose stack     at EventEmitter.emit (events.js:214:7)
-14 verbose stack     at ChildProcess.<anonymous> (/usr/share/npm/lib/utils/spawn.js:24:14)
-14 verbose stack     at emitTwo (events.js:126:13)
-14 verbose stack     at ChildProcess.emit (events.js:214:7)
-14 verbose stack     at maybeClose (internal/child_process.js:925:16)
-14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
-15 verbose pkgid hof-invoke-control-flow@1.0.0
-16 verbose cwd /home/bugofbook/github/HOF-invoke-control-flow
-17 error Linux 4.15.0-70-generic
-18 error argv "/usr/bin/node" "/usr/bin/npm" "run" "test"
-19 error node v8.10.0
-20 error npm  v3.5.2
-21 error code ELIFECYCLE
-22 error hof-invoke-control-flow@1.0.0 test: `test`
-22 error Exit status 1
-23 error Failed at the hof-invoke-control-flow@1.0.0 test script 'test'.
-23 error Make sure you have the latest version of node.js and npm installed.
-23 error If you do, this is most likely a problem with the hof-invoke-control-flow package,
-23 error not with npm itself.
-23 error Tell the author that this fails on your system:
-23 error     test
-23 error You can get information on how to open an issue for this project with:
-23 error     npm bugs hof-invoke-control-flow
-23 error Or if that isn't available, you can get their info via:
-23 error     npm owner ls hof-invoke-control-flow
-23 error There is likely additional logging output above.
-24 verbose exit [ 1, true ]
+4 warn Username must be lowercase
+5 verbose adduser before first PUT { _id: 'org.couchdb.user:bugofbook',
+5 verbose adduser   name: 'bugofbook',
+5 verbose adduser   password: 'XXXXX',
+5 verbose adduser   email: 'bugofbook@gmail.com',
+5 verbose adduser   type: 'user',
+5 verbose adduser   roles: [],
+5 verbose adduser   date: '2019-12-01T09:04:44.490Z' }
+6 verbose request uri https://npm.pkg.github.com/-/user/org.couchdb.user:bugofbook
+7 verbose request new user, so can't send auth
+8 info attempt registry request try #1 at 下午5:04:44
+9 verbose request id ca59dc471667d1f8
+10 http request PUT https://npm.pkg.github.com/-/user/org.couchdb.user:bugofbook
+11 http 401 https://npm.pkg.github.com/-/user/org.couchdb.user:bugofbook
+12 verbose headers { 'content-security-policy': 'default-src \'none\';',
+12 verbose headers   'content-type': 'application/json; charset=utf-8',
+12 verbose headers   server: 'GitHub Registry',
+12 verbose headers   'strict-transport-security': 'max-age=31536000;',
+12 verbose headers   'x-content-type-options': 'nosniff',
+12 verbose headers   'x-frame-options': 'DENY',
+12 verbose headers   'x-xss-protection': '1; mode=block',
+12 verbose headers   date: 'Sun, 01 Dec 2019 09:04:45 GMT',
+12 verbose headers   'content-length': '172',
+12 verbose headers   'x-github-request-id': '872C:13D7:16BF2:CD42C:5DE3822D' }
+13 verbose request invalidating /home/bugofbook/.npm/npm.pkg.github.com/-/user/org.couchdb.user_3Abugofbook on PUT
+14 verbose adduser back [ { Error: Error authenticating user: Personal Access Token is invalid. Your token must have the `repo` and read:packages` scopes to login to the GitHub Package Registry. : -/user/org.couchdb.user:bugofbook
+14 verbose adduser     at makeError (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+14 verbose adduser     at CachingRegistryClient.<anonymous> (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+14 verbose adduser     at Request._callback (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+14 verbose adduser     at Request.self.callback (/usr/share/npm/node_modules/request/request.js:198:22)
+14 verbose adduser     at emitTwo (events.js:126:13)
+14 verbose adduser     at Request.emit (events.js:214:7)
+14 verbose adduser     at Request.<anonymous> (/usr/share/npm/node_modules/request/request.js:1082:10)
+14 verbose adduser     at emitOne (events.js:121:20)
+14 verbose adduser     at Request.emit (events.js:211:7)
+14 verbose adduser     at IncomingMessage.<anonymous> (/usr/share/npm/node_modules/request/request.js:1009:12) statusCode: 401, code: 'E401' },
+14 verbose adduser   { error: 'Error authenticating user: Personal Access Token is invalid. Your token must have the `repo` and read:packages` scopes to login to the GitHub Package Registry.' },
+14 verbose adduser   '{"error":"Error authenticating user: Personal Access Token is invalid. Your token must have the `repo` and read:packages` scopes to login to the GitHub Package Registry."}' ]
+15 warn adduser Incorrect username or password
+15 warn adduser You can reset your account by visiting:
+15 warn adduser
+15 warn adduser     https://npmjs.org/forgot
+16 verbose stack Error: Error authenticating user: Personal Access Token is invalid. Your token must have the `repo` and read:packages` scopes to login to the GitHub Package Registry. : -/user/org.couchdb.user:bugofbook
+16 verbose stack     at makeError (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+16 verbose stack     at CachingRegistryClient.<anonymous> (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+16 verbose stack     at Request._callback (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+16 verbose stack     at Request.self.callback (/usr/share/npm/node_modules/request/request.js:198:22)
+16 verbose stack     at emitTwo (events.js:126:13)
+16 verbose stack     at Request.emit (events.js:214:7)
+16 verbose stack     at Request.<anonymous> (/usr/share/npm/node_modules/request/request.js:1082:10)
+16 verbose stack     at emitOne (events.js:121:20)
+16 verbose stack     at Request.emit (events.js:211:7)
+16 verbose stack     at IncomingMessage.<anonymous> (/usr/share/npm/node_modules/request/request.js:1009:12)
+17 verbose statusCode 401
+18 verbose cwd /home/bugofbook/github/HOF-invoke-control-flow
+19 error Linux 4.15.0-70-generic
+20 error argv "/usr/bin/node" "/usr/bin/npm" "login" "--registry=https://npm.pkg.github.com/"
+21 error node v8.10.0
+22 error npm  v3.5.2
+23 error code E401
+24 error Error authenticating user: Personal Access Token is invalid. Your token must have the `repo` and read:packages` scopes to login to the GitHub Package Registry. : -/user/org.couchdb.user:bugofbook
+25 error If you need help, you may report this error at:
+25 error     <https://github.com/npm/npm/issues>
+26 verbose exit [ 1, true ]

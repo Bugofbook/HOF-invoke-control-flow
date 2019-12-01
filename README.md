@@ -15,7 +15,7 @@ use function
 
 ### invokeBlock
 
-both function are the copy from Redux.js. And invokeCompose is reverse to compose.there are no curry.
+the function are the copy from Redux.js. And invokeCompose is reverse to compose.there are no curry.
 
 Use function:
 
@@ -23,7 +23,7 @@ Use function:
 invokeBlock([fnProcess1,fnProcess2,...,fnProcessN])(data)
 ```
 
-both expression statments are equal to...
+the expression statments are equal to...
 
 ```javascript
 fnProcessN(...fnProcess2(fnProcess1(data)));
@@ -36,7 +36,7 @@ const process1 = data => data + "1";
 const process2 = data => data + "2";
 const process3 = data => data + "3";
 let data = "0";
-let aaa = invokeBlock([process1, process2, process2])(data);
+let aaa = invokeBlock([process1, process2, process3])(data);
 console.log(aaa); // '0123'
 ```
 
@@ -103,7 +103,7 @@ both expression statments are equal to...
 ```javascript
 if (fnCondition1(data)) {
   return fnResult1(data);
-} else if (fnCondition2) {
+} else if (fnCondition2(data)) {
   return fnResult2(data);
 } else {
   return data;
@@ -124,7 +124,7 @@ let result1 = invokeIfElseIf([
   [fbig1000, ftr1],
   [fbig100, ftr2],
   [fbig10, ftr3],
-  [()=>true,ffa]
+  [()=>true,ffa] // if you invoke 'else',you can use '()=>true', it always return 'true'
 ])(110);
 console.log(result1); // isbig100:110
 let result2 = invokeIfElseIf(
@@ -224,11 +224,13 @@ if fnCase1 is function and fnCase2 is not function
 ```javascript
 switch (fnCondition(data)) {
   case:fnCase1(data) {
-    fnProcess1(data)
+    return fnProcess1(data)
   }
   case:fnCase2 {
-    fnProcess2(data)
+    return fnProcess2(data)
   }
+  default:
+    return data
 }
 ```
 
@@ -246,7 +248,7 @@ let CaseObj = [
   ["bb", fCase2],
   ["cc", fCase3],
   ["dd", fCase4],
-  [fCond,fDefault]
+  [fCond,fDefault] // if you invoke 'default',you can use condition-callback-function  , it always return true
 ];
 let result1 = invokeSwitch(fCond)(CaseObj)("a");
 console.log(result1); // 成績為A
