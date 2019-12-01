@@ -13,15 +13,14 @@ use function
 - invokeSwitch
 - invokeFor
 
-### compose and invokeCompose
+### invokeBlock
 
 both function are the copy from Redux.js. And invokeCompose is reverse to compose.there are no curry.
 
 Use function:
 
 ```javascript
-compose(fnProcessN,...,fnProcess2,fnProcess1)(data)
-invokeCompose(fnProcess1,fnProcess2,...,fnProcessN)(data)
+invokeBlock([fnProcess1,fnProcess2,...,fnProcessN])(data)
 ```
 
 both expression statments are equal to...
@@ -37,10 +36,8 @@ const process1 = data => data + "1";
 const process2 = data => data + "2";
 const process3 = data => data + "3";
 let data = "0";
-let aaa = compose(process3, process2, process1)(data);
-let bbb = invokeCompose(process1, process2, process2)(data);
+let aaa = invokeBlock([process1, process2, process2])(data);
 console.log(aaa); // '0123'
-console.log(bbb); // '0123'
 ```
 
 ### invokeIf
@@ -157,12 +154,16 @@ invokeDoWhile(fnCondition)(fnProcess)(arg);
 those expression statments are equal to...
 
 ```javascript
-While: while (fnCondition(arg)) {
+While:
+
+ while (fnCondition(arg)) {
   arg = fnProcess(arg);
 }
 return arg;
 
-DoWhile: arg = fnProcess(arg);
+DoWhile: 
+
+arg = fnProcess(arg);
 while (fnCondition(arg)) {
   arg = fnProcess(arg);
 }
