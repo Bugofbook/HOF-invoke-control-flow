@@ -1,0 +1,24 @@
+{
+  "name": "hof-invoke-control-flow",
+  "version": "1.0.0",
+  "description": "the high order function to invoke control flow",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bugofbook/HOF-invoke-control-flow.git"
+  },
+  "keywords": [
+    "HOF",
+    "FP",
+    "control-flow"
+  ],
+  "author": "BugofBook",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bugofbook/HOF-invoke-control-flow/issues"
+  },
+  "homepage": "https://github.com/Bugofbook/HOF-invoke-control-flow#readme"
+}
