@@ -40,48 +40,44 @@ const invokeBlockLazy = function ([...fnStatements] = []) {
 const ifFunction1 = (fnCondition, [fnTrue, fnFalse]) => (data) => {
 	return ifFunction(fnCondition)([fnTrue, fnFalse])(data)
 }
-const ifFunction2 = (fnCondition) => ([fnTrue, fnFalse], data) => {
+const ifFunction2 = (fnCondition) => ([fnTrue=f=>f, fnFalse=f=>f], data) => {
 	return (data !== undefined) ? ifFunction(fnCondition)([fnTrue, fnFalse])(data) : ifFunction1(fnCondition, [fnTrue, fnFalse])
 }
-const invokeIf = (fnCondition, [fnTrue, fnFalse], data) => {
+const invokeIf = (fnCondition=f=>true, [fnTrue, fnFalse] = [], data) => {
 	if (data !== undefined)
 		return ifFunction(fnCondition)([fnTrue, fnFalse])(data)
 	else if (fnTrue !== undefined)
 		return ifFunction1(fnCondition, [fnTrue, fnFalse])
-	else if (fnCondition !== undefined)
+	else
 		return ifFunction2(fnCondition)
 }
 
-const ifElseIfFunction1 = ([[currentFnCon, currentFnTrue], ...otherProcessfns] = [[]]) => (data) => {
+const ifElseIfFunction1 = ([[currentFnCon=f=>true, currentFnTrue=f=>f], ...otherProcessfns] = [[]]) => (data) => {
 	return ifElseIfFunction([[currentFnCon, currentFnTrue], ...otherProcessfns])(data)
 }
-const invokeIfElseIf = ([[currentFnCon, currentFnTrue], ...otherProcessfns] = [[]], data) => {
-	if (currentFnCon === undefined || currentFnTrue === undefined)
-		return console.error(`you do not set any condition and statement into  invokeIfElseIf`)
-	else if (data !== undefined)
+const invokeIfElseIf = ([[currentFnCon=f=>true, currentFnTrue=f=>f], ...otherProcessfns] = [[]], data) => {
+	if (data !== undefined)
 		return ifElseIfFunction([[currentFnCon, currentFnTrue], ...otherProcessfns])(data)
 	else
 		return ifElseIfFunction1([[currentFnCon, currentFnTrue], ...otherProcessfns])
 }
 
-const switchFunction0 = (fnCondition) => ([[currentFnCon, currentFnTrue], ...otherProcessfns] = [[]]) => (data) => {
-	return (currentFnCon === undefined || currentFnTrue === undefined) ? console.error(`you do not set any case and statement into  invokeSwitch`) : switchFunction(fnCondition)([[currentFnCon, currentFnTrue], ...otherProcessfns])(data)
+const switchFunction0 = (fnCondition) => (fnCaseValueMap) => (data) => {
+	return switchFunction(fnCondition)(fnCaseValueMap)(data)
 }
-const switchFunction1 = (fnCondition,[[currentFnCon, currentFnTrue], ...otherProcessfns] = [[]]) => (data) => {
-	return (currentFnCon === undefined || currentFnTrue === undefined) ? console.error(`you do not set any case and statement into  invokeSwitch`) : switchFunction(fnCondition)([[currentFnCon, currentFnTrue], ...otherProcessfns])(data)
+const switchFunction1 = (fnCondition,fnCaseValueMap) => (data) => {
+	return switchFunction(fnCondition)(fnCaseValueMap)(data)
 }
 const switchFunction2 = (fnCondition) => (fnCaseValueMap,data) => {
 	return (data !== undefined) ? switchFunction0(fnCondition)(fnCaseValueMap)(data) : switchFunction1(fnCondition,fnCaseValueMap)
 }
-const invokeSwitch = (fnCondition,fnCaseValueMap,data) => {
+const invokeSwitch = (fnCondition=f=>f,fnCaseValueMap,data) => {
 	if (data !== undefined)
 		return switchFunction0(fnCondition)(fnCaseValueMap)(data)
 	else if (fnCaseValueMap !== undefined)
 		return switchFunction1(fnCondition,fnCaseValueMap)
-	else if (fnCondition !== undefined)
-		return switchFunction2(fnCondition)
 	else
-		return console.error(`the number of parameters for invokeSwitch are illegal`)
+		return switchFunction2(fnCondition)
 }
 
 const whileFunction1 = (fnCondition,fnProcess) => (data) => {
@@ -94,7 +90,7 @@ const invokeWhile = (fnCondition,fnProcess,data) => {
 	if (data !== undefined)
 		return whileFunction(fnCondition)(fnProcess)(data)
 	else if (fnProcess !== undefined)
-		return whileFunction1(fnCondition)(fnProcess)
+		return whileFunction1(fnCondition,fnProcess)
 	else if (fnCondition !== undefined)
 		return whileFunction2(fnCondition)
 	else
@@ -117,10 +113,6 @@ const invokeDoWhile = (fnCondition, fnProcess, data) => {
 	else
 		return console.error(`the number of parameters for invokeDoWhile are illegal`)
 }
-
-const forFunction2 = (doTime = 1) => (fnProcess, data) => {
-  return (data === undefined )? forFunction(doTime)(fnProcess) : forFunction(doTime)(fnProcess)(data);
-};
 /**
  * the HOF for invoke "For"
  * @param {(data: U) => U} doTimefn
@@ -144,7 +136,7 @@ const invokeFor = (doTimefn, fnProcess, data) => {
 	if (data !== undefined)
 		return forFunction0(doTimefn)(fnProcess)(data)
 	else if (fnProcess !== undefined)
-	 return forFunction1(doTimefn)(fnProcess)
+	 return forFunction1(doTimefn,fnProcess)
   else if (doTimefn !== undefined)
     return forFunction2(doTimefn)
   else
