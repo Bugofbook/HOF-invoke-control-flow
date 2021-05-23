@@ -1,5 +1,5 @@
-const { invokeWhile, invokeDoWhile } = require("../index.js")
-
+// const { invokeWhile, invokeDoWhile } = require("../index.js")
+import { invokeWhile, invokeDoWhile } from "../index.js";
 const fcon = e => e < 10;
 const fporc = e => e + 2;
 

@@ -143,7 +143,17 @@ const invokeFor = (doTimefn, fnProcess, data) => {
     return console.error(`the number of arguments for invokeFor are illegal`);
 };
 
-module.exports = {
+// module.exports = {
+// 	invokeBlock,
+// 	invokeIf,
+// 	invokeIfElseIf,
+// 	invokeSwitch,
+// 	invokeWhile,
+// 	invokeDoWhile,
+// 	invokeFor,
+// }
+
+export {
 	invokeBlock,
 	invokeIf,
 	invokeIfElseIf,
